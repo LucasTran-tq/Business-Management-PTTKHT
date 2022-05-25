@@ -1,0 +1,51 @@
+@model UserListModel
+@{
+    ViewData["Title"] = "List of members";
+}
+<partial name="_StatusMessage"></partial>
+<div class="card shadow mx-5 mb-4">
+    <h2 class="mx-5"> @ViewData["Title"]</h2>
+
+    <p class="mx-5 h3">Total number of members: @Model.totalUsers</p>
+
+
+
+
+
+<table class="table mx-5">
+    <tr>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var user in Model.users)
+    {
+        <tr>
+            <td>@user.UserName</td>
+            <td>
+                @if (string.IsNullOrEmpty(user.RoleNames))
+                {
+                    <a class="text-dark" asp-action="AddRole" asp-route-id="@user.Id">+ Add roles</a>
+                }
+                else
+                {
+                    <a asp-action="AddRole" asp-route-id="@user.Id">@user.RoleNames</a>
+                }
+            </td>
+            <td>
+                <a class="btn btn-success btn-sm" asp-action="SetPassword" asp-route-id="@user.Id">Set password</a>
+            </td>
+        </tr>
+    }
+</table>
+</div>
+@{
+    var pagingmodel = new PagingModel()
+    {
+        currentpage = Model.currentPage,
+        countpages = Model.countPages,
+        generateUrl = (int? p) => Url.Action("Index", new { p = p})
+    };
+}
+
+<partial name="_PagingXTL" model="@pagingmodel" />

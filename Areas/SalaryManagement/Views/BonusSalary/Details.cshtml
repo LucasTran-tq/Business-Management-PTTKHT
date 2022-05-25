@@ -1,0 +1,66 @@
+@model App.Areas.SalaryManagement.Models.BonusSalary
+
+<link href="/css/detail-profile.css" type="text/css" rel="stylesheet" />
+
+<partial name="SBAdmin/_Styles" />
+
+<div>
+    <div class="profile_background mx-5">
+        <div class="profile_title">
+            <h1>Bonus Salary</h1>
+            <a asp-action="Edit" asp-route-id="@Model.BonusSalaryId" class="btn btn-primary sm ">Edit</a>
+        </div>
+        <div class="contain_profile  mb-5">
+            <div class="basic_information">
+                <div class="information-title mx-5">
+                    <p>Bonus Salary</p>
+                </div>
+                <hr>
+                <div class="basic_information-group">
+                    <div class="information-group">
+                        <dl class="col mx-5">
+        @* <dt class = "row-sm-2 title-text">
+            @Html.DisplayNameFor(model => model.BonusLevel)
+        </dt>
+        <dd class = "row-sm-10 content-information">
+            @Html.DisplayFor(model => model.BonusLevel)
+        </dd> *@
+        <dt class = "row-sm-2 title-text">
+            @Html.DisplayNameFor(model => model.BonusSalaryName)
+        </dt>
+        <dd class = "row-sm-10 content-information">
+            @Html.DisplayFor(model => model.BonusSalaryName)
+        </dd>
+        <dt class = "row-sm-2 title-text">
+            @Html.DisplayNameFor(model => model.PrizeMoney)
+        </dt>
+        <dd class = "row-sm-10 content-information">
+            @Html.DisplayFor(model => model.PrizeMoney)
+        </dd>
+        <dt class = "row-sm-2 title-text">
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+        <dd class = "row-sm-10 content-information">
+            @* @Html.DisplayFor(model => model.StartTime) *@
+            @Convert.ToDateTime(Model.StartTime).ToString("dd/MM/yyyy")
+        </dd>
+        <dt class = "row-sm-2 title-text">
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+        <dd class = "row-sm-10 content-information">
+            @* @Html.DisplayFor(model => model.EndTime) *@
+            @Convert.ToDateTime(Model.StartTime).ToString("dd/MM/yyyy")
+        </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mx-5 mb-4 content-information mt-5">
+    <a asp-action="Index">
+        <i class="far fa-arrow-alt-circle-left"></i>
+        Back
+    </a>
+</div>

@@ -1,0 +1,38 @@
+@model List<RoleModel>
+@{
+    ViewData["Title"] = "List of roles";
+}
+
+
+<partial name="_StatusMessage"></partial>
+
+<div class="card shadow mx-5 mb-4">
+    <h2 class="mx-5"> @ViewData["Title"]</h2>
+<div class="mb-2 mx-5 float-right">
+    <a class="btn btn-primary" asp-action="Create">Create</a>
+    <a class="btn btn-primary" asp-action="Index" asp-controller="User">Manage member</a>
+</div>
+
+<table class="table mx-5">
+    <tr>
+        <th>Name</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var role in Model)
+    {
+        <tr>
+            <td>
+                <p>@role.Name</p>
+                @foreach (var claim in @role.Claims)
+                {
+                    <small>@claim</small><br>
+                }
+            </td>
+            <td>
+                <a class="btn btn-success btn-sm" asp-action="Edit" asp-route-roleid="@role.Id">Update</a>
+                <a class="btn btn-success btn-sm" asp-action="Delete" asp-route-roleid="@role.Id">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+</div>

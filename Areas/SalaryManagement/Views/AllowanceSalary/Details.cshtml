@@ -1,0 +1,67 @@
+@model App.Areas.SalaryManagement.Models.AllowanceSalary
+
+<link href="/css/detail-profile.css" type="text/css" rel="stylesheet" />
+
+<partial name="SBAdmin/_Styles" />
+
+<div>
+    <div class="profile_background mx-5">
+        <div class="profile_title">
+            <h1>Allowance Salary</h1>
+            <a asp-action="Edit" asp-route-id="@Model.AllowanceSalaryId" class="btn btn-primary sm ">Edit</a>
+        </div>
+        <div class="contain_profile  mb-5">
+            <div class="basic_information">
+                <div class="information-title mx-5">
+                    <p>Allowance Salary</p>
+                </div>
+                <hr>
+                <div class="basic_information-group">
+                    <div class="information-group">
+                        <dl class="col mx-5">
+                                        <dt class = "row-sm-2 title-text">
+                                @Html.DisplayNameFor(model => model.Position)
+                            </dt>
+                            <dd class = "row-sm-10 content-information">
+                                @Html.DisplayFor(model => model.Position.PositionName)
+                            </dd>
+                            <dt class = "row-sm-2 title-text">
+                                @Html.DisplayNameFor(model => model.AllowanceSalaryName)
+                            </dt>
+                            <dd class = "row-sm-10 content-information">
+                                @Html.DisplayFor(model => model.AllowanceSalaryName)
+                            </dd>
+                            <dt class = "row-sm-2 title-text">
+                                @Html.DisplayNameFor(model => model.Allowance)
+                            </dt>
+                            <dd class = "row-sm-10 content-information">
+                                @Html.DisplayFor(model => model.Allowance)
+                            </dd>
+                            <dt class = "row-sm-2 title-text">
+                                @Html.DisplayNameFor(model => model.StartTime)
+                            </dt>
+                            <dd class = "row-sm-10 content-information">
+                                @* @Html.DisplayFor(model => model.StartTime) *@
+                                @Convert.ToDateTime(Model.StartTime).ToString("dd/MM/yyyy")
+                            </dd>
+                            <dt class = "row-sm-2 title-text">
+                                @Html.DisplayNameFor(model => model.EndTime)
+                            </dt>
+                            <dd class = "row-sm-10 content-information">
+                                @* @Html.DisplayFor(model => model.EndTime) *@
+                                @Convert.ToDateTime(Model.EndTime).ToString("dd/MM/yyyy")
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mx-5 content-information">
+    <a asp-action="Index">
+        <i class="far fa-arrow-alt-circle-left"></i>
+        Back
+    </a>
+</div>

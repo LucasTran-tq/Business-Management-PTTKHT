@@ -1,0 +1,58 @@
+@model App.Areas.SalaryManagement.Models.OvertimeSalary
+
+<link href="/css/detail-profile.css" type="text/css" rel="stylesheet" />
+
+<partial name="SBAdmin/_Styles" />
+
+<div>
+    <div class="profile_background mx-5">
+        <div class="profile_title">
+          
+            <a asp-action="Edit" asp-route-id="@Model.OvertimeSalaryId" class="btn btn-primary sm ">Edit</a>
+        </div>
+        <div class="contain_profile  mb-5">
+            <div class="basic_information">
+                <div class="information-title mx-5">
+                    <p>Overtime Salary</p>
+                </div>
+                <hr>
+                <div class="basic_information-group">
+                    <div class="information-group">
+                        <dl class="col mx-5">
+                    <dt class = "row-sm-2 title-text">
+                        @Html.DisplayNameFor(model => model.OvertimeSalaryName)
+                    </dt>
+                    <dd class = "row-sm-10 content-information">
+                        @Html.DisplayFor(model => model.OvertimeSalaryName)
+                    </dd>
+                    <dt class = "row-sm-2 title-text">
+                        @Html.DisplayNameFor(model => model.moneyPerSession)
+                    </dt>
+                    <dd class = "row-sm-10 content-information">
+                        @Html.DisplayFor(model => model.moneyPerSession)
+                    </dd>
+                    <dt class = "row-sm-2 title-text">
+                        @Html.DisplayNameFor(model => model.StartTime)
+                    </dt>
+                    <dd class = "row-sm-10 content-information">
+                        @Convert.ToDateTime(Model.StartTime).ToString("dd/MM/yyyy")
+                    </dd>
+                    <dt class = "row-sm-2 title-text">
+                        @Html.DisplayNameFor(model => model.EndTime)
+                    </dt>
+                    <dd class = "row-sm-10 content-information">
+                        @Convert.ToDateTime(Model.EndTime).ToString("dd/MM/yyyy")
+                    </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mx-5 mb-4 content-information mt-5">
+    <a asp-action="Index">
+        <i class="far fa-arrow-alt-circle-left"></i>
+        Back
+    </a>
+</div>

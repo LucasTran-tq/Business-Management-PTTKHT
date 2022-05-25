@@ -1,0 +1,53 @@
+@model App.Areas.EmployeeManagement.Models.Employee_Skill
+
+<link href="/css/detail-profile.css" type="text/css" rel="stylesheet" />
+
+<partial name="SBAdmin/_Styles" />
+
+<h3 class="mx-5">Are you sure you want to delete this Employee Skill?</h3>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="id" />
+    <input type="submit" value="Delete" class="btn btn-danger mx-5" />
+</form>
+<div class="mx-5">
+    <div class="col-md-6 bg-white rounded shadow-lg">
+        <div class="information-group mt-3">
+            <div class="information-group1">
+                <dl class="col mx-5">
+                    <dt class = "row-sm-2 title-text">
+                        @Html.DisplayNameFor(model => model.Employee)
+                    </dt>
+                    <dd class = "row-sm-10 content-information">
+                        @Html.DisplayFor(model => model.Employee.EmployeeName)
+                    </dd class>
+                    <dt class = "row-sm-2 title-text">
+                        @Html.DisplayNameFor(model => model.Skill)
+                    </dt>
+                    <dd class = "row-sm-10 content-information">
+                        @Html.DisplayFor(model => model.Skill.SkillName)
+                    </dd class>
+                    <dt class = "row-sm-2 title-text">
+                        @Html.DisplayNameFor(model => model.Level)
+                    </dt>
+                    <dd class = "row-sm-10 content-information">
+                        @Html.DisplayFor(model => model.Level)
+                    </dd>
+                    <dt class = "row-sm-2 title-text">
+                        @Html.DisplayNameFor(model => model.EvaluationDate)
+                    </dt>
+                    <dd class = "row-sm-10 content-information">
+                        @* @Html.DisplayFor(model => model.EvaluationDate) *@
+                        @Convert.ToDateTime(Model.EvaluationDate).ToString("dd/MM/yyyy")
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="mx-5 mb-4 content-information mt-5">
+    <a asp-action="Index">
+        <i class="far fa-arrow-alt-circle-left"></i>
+        Back
+    </a>
+</div>
+

@@ -1,0 +1,138 @@
+@model App.Areas.EmployeeManagement.Models.Employee
+
+<link href="/css/detail-profile.css" type="text/css" rel="stylesheet" />
+
+<partial name="SBAdmin/_Styles" />
+
+<div class="row">
+    <div class="col-md-10 bg-white mx-5 rounded shadow-lg">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="EmployeeId" />
+            <div class="information-title mx-5">
+                <p>Edit Information</p>
+            </div>
+            <hr>
+            <div class="information-group">
+                <div class="information-group1 mx-5 col">
+                    <div class="form-group mx-5">
+                        <label asp-for="EmployeeName" class="control-label title-text"></label>
+                        <input asp-for="EmployeeName" class="form-control" />
+                        <span asp-validation-for="EmployeeName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mx-5">
+                        <label asp-for="DepartmentId" class="control-label title-text"></label>
+                        <select id="DepartmentId" asp-for="DepartmentId" class="form-control"
+                            asp-items="ViewBag.DepartmentId"></select>
+                    </div>
+                    <div class="form-group mx-5">
+                        <label asp-for="LevelId" class="control-label title-text"></label>
+                        <select id="LevelId" asp-for="LevelId" class="form-control"
+                            asp-items="ViewBag.LevelId"></select>
+                    </div>
+                    <div class="form-group mx-5">
+                        <label asp-for="DOB" class="control-label title-text"></label>
+                        <input asp-for="DOB" class="form-control" />
+                        <span asp-validation-for="DOB" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mx-5">
+                        <label asp-for="Sex" class="control-label title-text"></label>
+                        @* <input asp-for="Sex" class="form-control" /> *@
+                        <div>
+                            @Html.RadioButton("Sex", "Male",null,new { @class = "content-information" }) Male
+                            @Html.RadioButton("Sex", "Female",null,new { @class = "ml-4 content-information" }) Female
+                            @Html.RadioButton("Sex", "Other",null,new { @class = "ml-4 content-information" }) Other
+                        </div>
+                        <span asp-validation-for="Sex" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mx-5">
+                        <label asp-for="PlaceOfBirth" class="control-label title-text"></label>
+                        <input asp-for="PlaceOfBirth" class="form-control" />
+                        <span asp-validation-for="PlaceOfBirth" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mx-5">
+                        <label asp-for="Address" class="control-label  title-text "></label>
+                        <input asp-for="Address" class="form-control" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    
+                </div>
+                <div class="information-group2" style="display: flex; justify-content: center; flex-direction: column;">
+                    <div class="form-group mx-5">
+                        <input asp-for="ImageByte" class="form-control" type="file"
+                            onchange="return ShowImagePreview(this)" id="fileupload" hidden />
+                        <label for="fileupload" class=" container-profilepic" style="display: flex; justify-content: center;">
+                            <img src="@(Model.ImageByte == null ? "/img/defaultAvatar.jpg" : string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(Model.ImageByte)))"
+                            id="imagePreview" class="photo-preview " alt="DefaultAvatar" style="max-width: 200px; max-height: 200px; border-radius: 50% !important;">
+                            <div class="middle-profilepic">
+                                <div class="text-profilepic"><i class="fas fa-camera margin-top100"></i>
+                                 <div class="text-profilepic">Change avatar
+                                </div>
+                                </div>
+                            </div>
+                        </label>
+                        <span asp-validation-for="ImageByte" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mx-5 my-3">
+                        <a href="/admin/salary-management/salary/Create?empId=@Model.EmployeeId">Create Salary</a>
+                        
+                    </div>
+                    <div class="form-group mx-5 my-3">
+                        <a asp-action="Create" asp-route-empId="@Model.EmployeeId" asp-controller="Employee_Skill">Create Skill</a>
+                        
+                    </div>
+                    <div class="form-group mx-5 my-3">
+                        <a asp-action="Create" asp-route-empId="@Model.EmployeeId" asp-controller="Employee_Position">Create Position</a>
+                        
+                    </div>
+                    <div class="form-group mx-5 my-3">
+                        <a href="/admin/salary-management/contract/Create?empId=@Model.EmployeeId">Create Contract</a>
+                        
+                    </div>
+                    
+
+
+
+                </div>
+            </div>
+            <div class="form-group float-right">
+                <input type="submit" value="Save" class="btn btn-primary sm" />
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+<div class="mx-5 mb-4 content-information mt-5">
+    <a asp-action="Index">
+        <i class="far fa-arrow-alt-circle-left"></i>
+        Back
+    </a>
+</div>
+
+
+
+
+
+<script>
+    function ShowImagePreview(input) {
+        debugger;
+        if (input.files && input.files[0]) {
+            var fname = input.files[0].name;
+            var re = /(\.jpg|\.jpeg|\.bmp|\.gif|\.png)$/i;
+            if (!re.exec(fname)) {
+                alert("Image not supported!");
+                $("#fileupload").val("");
+
+                return false;
+            }
+            else {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imagePreview').prop('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    }
+</script>
