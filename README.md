@@ -129,7 +129,8 @@ To enter AIT Business management system and use as administrator, you should:
 ## AIT Team
 - [Tran Quoc Thang](https://github.com/LucasTran-tq)
 - [Nguyen Huu Phat](https://github.com/nguyenhuuphat2001)
-- [Bui Thanh Phu](https://github.com/phubuideptrai)
+- [Tran Thanh Trung](https://github.com/ThanhTrung2001)
+- [Pham Nguyen Thanh Binh]
 
 
 ## 📝 License
